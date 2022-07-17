@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>首頁</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/my-style.css" rel="stylesheet">
+
+  <!-- jQuery cdn -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <label for="text_line_1" class="form-label">行1</label>
+        <input id="text_line_1" class="text_line form-control" data-y="140" data-color="#222222" type="text"/>
+        <label for="text_line_2" class="form-label">行2</label>
+        <input id="text_line_2" class="text_line form-control" data-y="350" data-color="#ff0000" type="text"/>
+        <label for="text_line_3" class="form-label">行3</label>
+        <input id="text_line_3" class="text_line form-control" data-y="560" data-color="#1f497d" type="text"/>
+        <label for="text_line_4" class="form-label">行4</label>
+        <input id="text_line_4" class="text_line form-control" data-y="750" data-color="#222222" type="text"/>
+      </div>
+      <div class="col-md-7">
+        <img id="demoImg" src="" width="100%"/>
+      </div>
+    </div>
+  </div>
+  
+  <canvas id="canvasExec" class="d-none" width="2000" height="1125">
+    Your browser does not support the HTML canvas tag.</canvas>
+</body>
+<script>
+
+  window.onload = function() {
+    let canvas = document.getElementById("canvasExec");
+    let ctx = canvas.getContext("2d");
+    let [width, height] = [canvas.width, canvas.height];
+    let img = new Image();
+    img.src = "/assets/img/tool/template_1.jpg";
+
+    $(img).on("load", function() {
+      $(this).width(width);
+      $(this).height(height);
+      drawCanvas(ctx);
+    });
+
+    $(".text_line").keyup(function(elem){
+      drawCanvas(ctx)
+    })
+
+    
+    function drawCanvas(ctx){
+      ctx.clearRect(0,0, width, height)
+      ctx.drawImage(img, 0, 0, width, height);
+
+      let defaultColor = "#222222";
+      let defaultFont = "800 180px 微軟正黑體";
+      let defaulShadowBlur = 5; // text shadow size
+      let defaultShadowOffsetY = 5; // text shadow y position
+      let defaultLineWidth = 3; // text stroke width
+      let defaultStrokeStyle = "#ffffff"; // text stroke color
+      let defaultTextX = width / 2; // text x postion
+      $(".text_line").each((i, elem) => {
+        // text style
+        ctx.fillStyle = elem.dataset.color ?? defaultColor;
+        ctx.font = defaultFont;
+
+        // text align
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";   
+        
+        // text shadow
+        ctx.shadowBlur = defaulShadowBlur;
+        ctx.shadowOffsetY = defaultShadowOffsetY;
+        ctx.shadowColor = "black";
+
+        // text stroke
+        ctx.lineWidth = defaultLineWidth;  
+        ctx.strokeStyle = defaultStrokeStyle;
+
+        // draw text with stroke
+        ctx.fillText(elem.value, defaultTextX, elem.dataset.y);
+        ctx.strokeText(elem.value, defaultTextX, elem.dataset.y);
+      })
+
+      
+      $("#demoImg")[0].src = canvas.toDataURL();  // load demo img
+    }
+  };  
+  
+</script>
+</html>

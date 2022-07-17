@@ -1,0 +1,39 @@
+.home-section{
+  background-color: white;
+}
+
+.home-section-show-bg{
+  background-color: white;
+  opacity: 0.8;
+}
+
+.about-avatar {
+  text-align: center;
+}
+.about-avatar img{
+  width: 200px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.grey-cr {
+  height: 600px;
+  width: 600px;
+  border-radius: 500px;
+  position: absolute;
+  bottom: 50%;
+  left: -15%;
+  z-index: 1;
+  transform: translateY(50%);
+  background: rgb(13 221 77 / 60%)
+}
+
+.background-img{
+  height: 100vh;
+  width: 100%;
+  background-size: contain;
+  position: fixed;
+  z-index: -1;
+  filter: brightness(0.4);
+  background-image: url("/assets/img/background_1.jpg");
+}
