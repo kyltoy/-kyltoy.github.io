@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>首頁</title>
+  <title>工具</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -34,16 +34,19 @@
 
 <body>
   <div class="container">
+    <nav class="navbar navbar-light bg-light">
+      <div id="template_nav" class="container-fluid justify-content-start"></div>
+    </nav>
     <div class="row">
-      <div class="col-md-5 mb-3">
+      <div id="text_line" class="col-md-5 mb-3">
         <label for="text_line_1" class="form-label">行1</label>
-        <input id="text_line_1" class="text_line form-control" data-y="140" data-color="#222222" type="text"/>
+        <input id="text_line_1" class="text_line form-control" data-y="60" data-color="#222222" type="text"/>
         <label for="text_line_2" class="form-label">行2</label>
-        <input id="text_line_2" class="text_line form-control" data-y="350" data-color="#ff0000" type="text"/>
+        <input id="text_line_2" class="text_line form-control" data-y="320" data-color="#ff0000" type="text"/>
         <label for="text_line_3" class="form-label">行3</label>
-        <input id="text_line_3" class="text_line form-control" data-y="560" data-color="#1f497d" type="text"/>
+        <input id="text_line_3" class="text_line form-control" data-y="580" data-color="#1f497d" type="text"/>
         <label for="text_line_4" class="form-label">行4</label>
-        <input id="text_line_4" class="text_line form-control" data-y="750" data-color="#222222" type="text"/>
+        <input id="text_line_4" class="text_line form-control" data-y="830" data-color="#222222" type="text"/>
       </div>
       <div class="col-md-7">
         <img id="demoImg" src="" width="100%"/>
@@ -57,6 +60,19 @@
 <script>
 
   window.onload = function() {
+    // log config setting
+    var config;
+    $.get("/assets/config/tool.json").then(function(data){
+      config = data;
+      config.forEach((element, ind) => {
+        $("#template_nav").append(`<button class="btn btn-outline-success me-2" data-key="${ind}" type="button">${element.name}</button>`);
+        
+      
+      });
+    })
+    
+
+    // load canvas setting
     let canvas = document.getElementById("canvasExec");
     let ctx = canvas.getContext("2d");
     let [width, height] = [canvas.width, canvas.height];
@@ -69,8 +85,12 @@
       drawCanvas(ctx);
     });
 
+    let timeoutKey = 0;
+    let timeoutTime = 200;
     $(".text_line").keyup(function(elem){
-      drawCanvas(ctx)
+      // use timeout optimised the update count
+      clearTimeout(timeoutKey);
+      timeoutKey = setTimeout(function(){drawCanvas(ctx)}, timeoutTime);
     })
 
     

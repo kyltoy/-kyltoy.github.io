@@ -1,0 +1,30 @@
+[
+    {
+        "name": "公告",
+        "template": "template_1.jpg",
+        "width": 2000,
+        "height": 1125,
+        "text_line": [
+            {
+                "label": "行1",
+                "data-y": "60",
+                "data-color": "#222222"
+            },
+            {
+                "label": "行2",
+                "data-y": "320",
+                "data-color": "#ff0000"
+            },
+            {
+                "label": "行3",
+                "data-y": "580",
+                "data-color": "#1f497d"
+            },
+            {
+                "label": "行4",
+                "data-y": "830",
+                "data-color": "#222222"
+            }
+        ]
+    }
+]
