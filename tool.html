@@ -30,6 +30,10 @@
 
   <!-- jQuery cdn -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Custom JS -->
+  <script src="/assets/js/util.js"></script>
+  <script src="/assets/js/tool.js"></script>
 </head>
 
 <body>
@@ -57,81 +61,4 @@
   <canvas id="canvasExec" class="d-none" width="2000" height="1125">
     Your browser does not support the HTML canvas tag.</canvas>
 </body>
-<script>
-
-  window.onload = function() {
-    // log config setting
-    var config;
-    $.get("/assets/config/tool.json").then(function(data){
-      config = data;
-      config.forEach((element, ind) => {
-        $("#template_nav").append(`<button class="btn btn-outline-success me-2" data-key="${ind}" type="button">${element.name}</button>`);
-        
-      
-      });
-    })
-    
-
-    // load canvas setting
-    let canvas = document.getElementById("canvasExec");
-    let ctx = canvas.getContext("2d");
-    let [width, height] = [canvas.width, canvas.height];
-    let img = new Image();
-    img.src = "/assets/img/tool/template_1.jpg";
-
-    $(img).on("load", function() {
-      $(this).width(width);
-      $(this).height(height);
-      drawCanvas(ctx);
-    });
-
-    let timeoutKey = 0;
-    let timeoutTime = 200;
-    $(".text_line").keyup(function(elem){
-      // use timeout optimised the update count
-      clearTimeout(timeoutKey);
-      timeoutKey = setTimeout(function(){drawCanvas(ctx)}, timeoutTime);
-    })
-
-    
-    function drawCanvas(ctx){
-      ctx.clearRect(0,0, width, height)
-      ctx.drawImage(img, 0, 0, width, height);
-
-      let defaultColor = "#222222";
-      let defaultFont = "800 180px 微軟正黑體";
-      let defaulShadowBlur = 5; // text shadow size
-      let defaultShadowOffsetY = 5; // text shadow y position
-      let defaultLineWidth = 3; // text stroke width
-      let defaultStrokeStyle = "#ffffff"; // text stroke color
-      let defaultTextX = width / 2; // text x postion
-      $(".text_line").each((i, elem) => {
-        // text style
-        ctx.fillStyle = elem.dataset.color ?? defaultColor;
-        ctx.font = defaultFont;
-
-        // text align
-        ctx.textBaseline = "top";
-        ctx.textAlign = "center";   
-        
-        // text shadow
-        ctx.shadowBlur = defaulShadowBlur;
-        ctx.shadowOffsetY = defaultShadowOffsetY;
-        ctx.shadowColor = "black";
-
-        // text stroke
-        ctx.lineWidth = defaultLineWidth;  
-        ctx.strokeStyle = defaultStrokeStyle;
-
-        // draw text with stroke
-        ctx.fillText(elem.value, defaultTextX, elem.dataset.y);
-        ctx.strokeText(elem.value, defaultTextX, elem.dataset.y);
-      })
-
-      
-      $("#demoImg")[0].src = canvas.toDataURL();  // load demo img
-    }
-  };  
-  
-</script>
 </html>

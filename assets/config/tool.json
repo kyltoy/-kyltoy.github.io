@@ -7,23 +7,93 @@
         "text_line": [
             {
                 "label": "行1",
-                "data-y": "60",
-                "data-color": "#222222"
+                "data": {
+                    "y": "230",
+                    "color": "#222222",
+                    "shadowSize": "5",
+                    "shadow-offset-y": "5",
+                    "shadow-color": "#222222",
+                    "stroke-width": "3",
+                    "stroke-style": "#ffffff"
+                }
             },
             {
                 "label": "行2",
-                "data-y": "320",
-                "data-color": "#ff0000"
+                "data": {
+                    "y": "490",
+                    "color": "#ff0000",
+                    "shadowSize": "5",
+                    "shadow-offset-y": "5",
+                    "shadow-color": "#222222",
+                    "stroke-width": "3",
+                    "stroke-style": "#ffffff"
+                }
             },
             {
                 "label": "行3",
-                "data-y": "580",
-                "data-color": "#1f497d"
+                "data": {
+                    "y": "750",
+                    "color": "#1f497d",
+                    "shadowSize": "5",
+                    "shadow-offset-y": "5",
+                    "shadow-color": "#222222",
+                    "stroke-width": "3",
+                    "stroke-style": "#ffffff"
+                }
             },
             {
                 "label": "行4",
-                "data-y": "830",
-                "data-color": "#222222"
+                "data": {
+                    "y": "1000",
+                    "color": "#222222",
+                    "shadowSize": "5",
+                    "shadow-offset-y": "5",
+                    "shadow-color": "#222222",
+                    "stroke-width": "3",
+                    "stroke-style": "#ffffff"
+                }
+            }
+        ]
+    },
+    {
+        "name": "戰報",
+        "template": "template_2.jpg",
+        "width": 749,
+        "height": 1080,
+        "text_line": [
+            {
+                "label": "行1",
+                "data": {
+                    "y": "500",
+                    "font": "800 210px 王漢宗綜藝體繁",
+                    "color": "#fdfa6a"
+                }
+            },
+            {
+                "label": "行2",
+                "data": {
+                    "y": "670",
+                    "font": "800 90px 微軟正黑體",
+                    "color": "#fdfa6a"
+                }
+            },
+            {
+                "label": "行3",
+                "data": {
+                    "y": "900",
+                    "font": "800 160px Verdana",
+                    "color": "#fdfa6a",
+                    "mirror-y": true
+                }
+            },
+            {
+                "label": "行4",
+                "data": {
+                    "y": "1000",
+                    "x": "630",
+                    "font": "600 50px 微軟正黑體",
+                    "color": "#ffffff"
+                }
             }
         ]
     }
