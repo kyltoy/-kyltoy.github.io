@@ -63,19 +63,49 @@
         "text_line": [
             {
                 "label": "行1",
-                "data": {
-                    "y": "500",
-                    "font": "800 210px 王漢宗綜藝體繁",
-                    "color": "#fdfa6a"
-                }
+                "data": [
+                    {
+                        "name": "大",
+                        "y": "500",
+                        "font": "800 210px 王漢宗綜藝體繁",
+                        "color": "#fdfa6a"
+                    },
+                    {
+                        "name": "中",
+                        "y": "500",
+                        "font": "800 140px 王漢宗綜藝體繁",
+                        "color": "#fdfa6a"
+                    },
+                    {
+                        "name": "小",
+                        "y": "500",
+                        "font": "800 90px 王漢宗綜藝體繁",
+                        "color": "#fdfa6a"
+                    }
+                ]
             },
             {
                 "label": "行2",
-                "data": {
-                    "y": "670",
-                    "font": "800 90px 微軟正黑體",
-                    "color": "#fdfa6a"
-                }
+                "data": [
+                    {
+                        "name": "大",
+                        "y": "670",
+                        "font": "800 90px 微軟正黑體",
+                        "color": "#fdfa6a"
+                    },
+                    {
+                        "name": "中",
+                        "y": "670",
+                        "font": "800 75px 微軟正黑體",
+                        "color": "#fdfa6a"
+                    },
+                    {
+                        "name": "小",
+                        "y": "670",
+                        "font": "800 60px 微軟正黑體",
+                        "color": "#fdfa6a"
+                    }
+                ]
             },
             {
                 "label": "行3",
@@ -93,7 +123,8 @@
                     "x": "630",
                     "font": "600 50px 微軟正黑體",
                     "color": "#ffffff"
-                }
+                },
+                "time": "mm/dd"
             }
         ]
     }

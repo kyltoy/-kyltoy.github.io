@@ -121,15 +121,56 @@ window.onload = function() {
             $("#text_line").html("");
 
             config = configs[this.dataset.key];
-            config.text_line.forEach(elem => {
+            config.text_line.forEach((elem, ind) => {
+                // data
                 let dataSetting = "";
-                for (dataName in elem['data']){    
-                    dataSetting += `data-${dataName}="${elem['data'][dataName]}" `;
+                let data = elem['data'];
+                
+                if (data.length > 0){
+                    // if data is multi, use first as default
+                    data = data[0];
                 }
-                let lineElement = htmlToElement(`<div><label for="text_line_1" class="form-label">${elem['label']}</label>
-                <input id="text_line_1" class="text_line form-control" ${dataSetting} type="text"/></div>`);
+                
+                for (dataName in data){    
+                    dataSetting += `data-${dataName}="${data[dataName]}" `;
+                }
+                let lineElement = htmlToElement(`
+                <div id="text_line_${ind}">
+                    <label for="text_line_input_${ind}" class="col form-label">${elem['label']}</label>
+                    <div class="input-group mb-3 text_line_input_group">
+                        <input id="text_line_input_${ind}" class="text_line form-control" ${dataSetting} type="text"/>
+                   </div>
+                </div>`);
                 $("#text_line").append(lineElement);
                 imageGenerator.bind("keyup", $(lineElement).find(".text_line"), imageGenerator.delayDrawCanvas);
+                
+                // multi data with select
+                if (elem['data'].length > 0){    
+                    let optionHtml = "";
+                
+                    for (dataKey in elem['data']){    
+                        let data = elem['data'][dataKey];
+                        let optionDataSetting = {};
+                        for (dataName in data){    
+                            optionDataSetting[dataName] = data[dataName];
+                        }
+                        console.log(optionDataSetting);
+                        optionHtml += `<option value='${JSON.stringify(optionDataSetting)}'>${data['name']}</option>`;
+                    }
+                    let selectElement = htmlToElement(`<select class="form-control" data-bind="#text_line_input_${ind}">${optionHtml}</select>`);
+                    
+                    $(selectElement).change(function(){
+                        let dataSetting = JSON.parse(this.value);
+                        let input = $(this.dataset['bind'])[0];
+                        for (dataName in dataSetting){
+                            input.dataset[dataName] = dataSetting[dataName];
+                        }
+                        
+                        imageGenerator.delayDrawCanvas();
+                    })
+                    $(`#text_line_${ind} .text_line_input_group`).append(selectElement);
+
+                }
             });
 
             imageGenerator.loadImage(`/assets/img/tool/${config['template']}`);
