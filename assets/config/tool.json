@@ -1,6 +1,6 @@
 [
     {
-        "name": "公告",
+        "name": "公告1",
         "template": "template_1.jpg",
         "width": 2000,
         "height": 1125,
@@ -51,6 +51,54 @@
                     "shadow-color": "#222222",
                     "stroke-width": "3",
                     "stroke-style": "#ffffff"
+                }
+            }
+        ]
+    },
+    {
+        "name": "公告2",
+        "template": "template_3.jpg",
+        "width": 749,
+        "height": 1080,
+        "text_line": [
+            {
+                "label": "行1",
+                "data":{
+                    "y": "250",
+                    "font": "800 150px Verdana",
+                    "color": "#fdfa6a"
+                }
+            },
+            {
+                "label": "行2",
+                "data": {
+                    "y": "512",
+                    "font": "800 150px Verdana",
+                    "color": "#ffffff"
+                }
+            },
+            {
+                "label": "行3",
+                "data": {
+                    "y": "775",
+                    "font": "800 150px Verdana",
+                    "color": "#ffffff"
+                }
+            },
+            {
+                "label": "行4",
+                "data": {
+                    "y": "1038",
+                    "font": "800 150px Verdana",
+                    "color": "#ffffff"
+                }
+            },
+            {
+                "label": "行5",
+                "data": {
+                    "y": "1300",
+                    "font": "800 150px Verdana",
+                    "color": "#fdfa6a"
                 }
             }
         ]

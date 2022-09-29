@@ -142,7 +142,7 @@ window.onload = function() {
                    </div>
                 </div>`);
                 $("#text_line").append(lineElement);
-                imageGenerator.bind("keyup", $(lineElement).find(".text_line"), imageGenerator.delayDrawCanvas);
+                imageGenerator.bind("input", $(lineElement).find(".text_line"), imageGenerator.delayDrawCanvas);
                 
                 // multi data with select
                 if (elem['data'].length > 0){    
